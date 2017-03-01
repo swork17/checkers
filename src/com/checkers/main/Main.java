@@ -4,7 +4,7 @@ public class Main {
 	private static String TAG = "Cs : Main ";
 
 	/**
-	 * Lancement de la procédure principale 
+	 * Lancement de la procedure principale 
 	 * @param args
 	 */
 	public static void main(String[] args) {
