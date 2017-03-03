@@ -33,7 +33,7 @@ public class Case extends JButton{
 		this.color = couleur;
 		if(couleur.compareTo("White" ) == 0) {
 			setIcon(new ImageIcon("img/blanc.jpg"));
-			this.setEnabled(false);
+			this.setEnabled(true);
 		}
 		if(couleur.compareTo("Black" ) == 0) {
 			setIcon(new ImageIcon("img/brun.jpg"));
@@ -62,5 +62,4 @@ public class Case extends JButton{
 	public boolean isAvailable() {
 		return available;
 	}
-
 }
