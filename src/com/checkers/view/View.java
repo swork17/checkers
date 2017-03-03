@@ -73,14 +73,6 @@ public class View {
 		JMenuItem rules = new JMenuItem("Règle du jeu" );
 		JMenuItem help = new JMenuItem("?" );
 		
-		help.addActionListener(new ActionListener(){
-	    	public void actionPerformed(ActionEvent e){
-    		JOptionPane.showMessageDialog(null,
-						    		          "Créateurs : Kévin BOUCHER - Fabien DIDIER\nVersion : 0.1",
-						    		          "Information", JOptionPane.NO_OPTION);;
-	    	}
-	    });
-		
 		file.add(new_game);
 		file.addSeparator();
 		file.add(quit);
@@ -96,19 +88,26 @@ public class View {
 		bar.add(game);
 		bar.add(about);
 		
-		new_game.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_N,
-                InputEvent.CTRL_MASK));
+		// Option "Nouvelle partie"
+		new_game.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_N, InputEvent.CTRL_MASK));
 		
-		quit.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_W,
-                KeyEvent.CTRL_MASK));
+		// Option "Quitter"
+		quit.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_W, KeyEvent.CTRL_MASK));
 		
 		quit.addActionListener(new ActionListener(){
 	    	public void actionPerformed(ActionEvent e){
 	    		System.exit(0);
 	    	}
 	    });
-
 		
+		// Option "?"
+		help.addActionListener(new ActionListener(){
+	    	public void actionPerformed(ActionEvent e){
+    		JOptionPane.showMessageDialog(null, "Créateurs : Kévin BOUCHER - Fabien DIDIER\nVersion : 0.1",
+						    		            "Information", JOptionPane.NO_OPTION);;
+	    	}
+	    });
+
 		bar.setVisible(true);
 		window.add(bar,BorderLayout.NORTH);
 	}
