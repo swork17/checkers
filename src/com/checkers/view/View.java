@@ -20,6 +20,7 @@ import javax.swing.JPanel;
 import javax.swing.KeyStroke;
 
 import com.checkers.model.Case;
+import com.checkers.model.Pawn;
 
 public class View {
 	
@@ -129,9 +130,9 @@ public class View {
 			for(int j=0; j < 8; j++)
 			{
 				if(((i+j) % 2)==0)
-					cases[i][j] = new Case(i,j,"Blanc",false);
+					cases[i][j] = new Case(i,j,"Black",false);
 				else 
-					cases[i][j] = new Case(i,j,"Noir",false);
+					cases[i][j] = new Case(i,j,"White",false);
 				plateform.add(cases[i][j]);
 			}
 		}
