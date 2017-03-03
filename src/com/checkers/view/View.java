@@ -1,11 +1,17 @@
 package com.checkers.view;
 
 import java.awt.BorderLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.InputEvent;
+import java.awt.event.KeyEvent;
 
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.KeyStroke;
 
 public class View {
 	
@@ -25,6 +31,7 @@ public class View {
 				&& this.size_y != 0) {
 			window = new JFrame();
 			window.setTitle("Cherckers V0.1");
+			window.setIconImage(new ImageIcon("img/icone.png").getImage());
 			window.setSize(this.size_x, this.size_y);
 			window.setResizable(false);
 			window.setLayout(new BorderLayout());
@@ -39,6 +46,19 @@ public class View {
 		JMenuItem new_game = new JMenuItem("Nouvelle partie" );
 		JMenuItem about = new JMenuItem("A propos" );
 		JMenuItem quit = new JMenuItem("Quitter" );
+		
+		new_game.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_N,
+                InputEvent.CTRL_MASK));
+		
+		quit.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_W,
+                KeyEvent.CTRL_MASK));
+		
+		quit.addActionListener(new ActionListener(){
+	    	public void actionPerformed(ActionEvent e){
+	    		System.exit(0);
+	    	}
+	    });
+		
 		fichier.add(new_game);
 		fichier.add(about);
 		fichier.add(quit);
