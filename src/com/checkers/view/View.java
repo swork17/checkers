@@ -15,6 +15,7 @@ import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.KeyStroke;
 
@@ -40,10 +41,12 @@ public class View {
 		if (this.size_x != 0 
 				&& this.size_y != 0) {
 			window = new JFrame();
-			window.setTitle("Cherckers V0.1");
+			window.setTitle("Cherckers");
 			window.setIconImage(new ImageIcon("img/icone.png").getImage());
 			window.setSize(this.size_x, this.size_y);
 			window.setResizable(false);
+			window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			window.setLocationRelativeTo(null);
 			window.setLayout(new BorderLayout());
 			init_menu();
 			init_score();
@@ -54,30 +57,44 @@ public class View {
 	
 	private void init_menu() {
 		bar = new JMenuBar();
+		
 		JMenu file = new JMenu("Fichier");
 		JMenuItem new_game = new JMenuItem("Nouvelle partie" );
-		JMenuItem about = new JMenuItem("A propos" );
 		JMenuItem quit = new JMenuItem("Quitter" );
 			
 		JMenu game = new JMenu("Jeu");
 		JMenuItem createServer = new JMenuItem("Organiser");
 		JMenuItem join = new JMenuItem("Rejoindre");
-		
 		JMenuItem save = new JMenuItem("Sauvegarder");
 		JMenuItem load = new JMenuItem("Charger");
 		JMenuItem restart = new JMenuItem("Recommencer");
 		
+		JMenu about = new JMenu("A propos");
+		JMenuItem rules = new JMenuItem("Règle du jeu" );
+		JMenuItem help = new JMenuItem("?" );
+		
+		help.addActionListener(new ActionListener(){
+	    	public void actionPerformed(ActionEvent e){
+    		JOptionPane.showMessageDialog(null,
+						    		          "Créateurs : Kévin BOUCHER - Fabien DIDIER\nVersion : 0.1",
+						    		          "Information", JOptionPane.NO_OPTION);;
+	    	}
+	    });
+		
 		file.add(new_game);
-		file.add(about);
+		file.addSeparator();
 		file.add(quit);
 		game.add(createServer);
 		game.add(join);
 		game.add(save);
 		game.add(load);
 		game.add(restart);
+		about.add(rules);
+		about.add(help);
 		
 		bar.add(file);
 		bar.add(game);
+		bar.add(about);
 		
 		new_game.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_N,
                 InputEvent.CTRL_MASK));
