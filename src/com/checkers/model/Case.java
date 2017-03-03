@@ -1,9 +1,11 @@
 package com.checkers.model;
 
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
@@ -22,15 +24,8 @@ public class Case extends JButton{
 		setColumn(column);
 		setLine(line);
 		setCouleur(color);
-		listeners = new EventListenerList();
-		this.addActionListener(new ActionListener() { 
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				System.out.println("X: " + column + " Y: " + line);
-			} 
-			} );
 	}
-
+	
 	public String getCouleur() {
 		return color;
 	}

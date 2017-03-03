@@ -18,6 +18,7 @@ import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.KeyStroke;
+import javax.swing.event.EventListenerList;
 
 import com.checkers.model.Case;
 import com.checkers.model.Pawn;
@@ -71,7 +72,7 @@ public class View {
 		JMenuItem restart = new JMenuItem("Recommencer");
 		
 		JMenu about = new JMenu("A propos");
-		JMenuItem rules = new JMenuItem("Rï¿½gle du jeu" );
+		JMenuItem rules = new JMenuItem("Regle du jeu" );
 		JMenuItem help = new JMenuItem("?" );
 		
 		file.add(new_game);
@@ -133,6 +134,25 @@ public class View {
 					cases[i][j] = new Case(i,j,"Black",false);
 				else 
 					cases[i][j] = new Case(i,j,"White",false);
+				
+				cases[i][j].addActionListener(new ActionListener() { 
+				@Override
+				public void actionPerformed(ActionEvent e) {
+				    Case o = (Case)e.getSource();
+					System.out.println("X: " + o.getColumn() + " Y: " + o.getLine());
+					
+					// Déselection des lignes et sélection de la ligne 
+					for (int l = 0; l < cases.length; l++) {
+						for(int c=0; c < 8; c++)
+						{
+							cases[l][c].setBorder(javax.swing.BorderFactory.createEmptyBorder());
+						}
+					}
+					o.setBorder(BorderFactory.createMatteBorder(2, 2, 2, 2, Color.blue));
+				} 
+				});
+				
+				
 				plateform.add(cases[i][j]);
 			}
 		}

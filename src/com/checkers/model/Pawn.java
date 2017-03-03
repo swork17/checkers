@@ -50,6 +50,8 @@ public class Pawn extends JPanel
 	}
 
 
+	
+	
 	public void paintComponent(Graphics g)
     {
 		try {
