@@ -1,16 +1,20 @@
 package com.checkers.view;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
 
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JPanel;
 import javax.swing.KeyStroke;
 
 public class View {
@@ -19,6 +23,7 @@ public class View {
 	private int size_y;
 	private JFrame window;
 	private JMenuBar bar;
+	private JPanel score;
 	
 	public View(int size_x, int size_y) {
 		this.size_x = size_x;
@@ -36,16 +41,22 @@ public class View {
 			window.setResizable(false);
 			window.setLayout(new BorderLayout());
 			init_menu();
+			init_score();
 			window.setVisible(true);
 		}
 	}
 	
 	private void init_menu() {
 		bar = new JMenuBar();
-		JMenu fichier = new JMenu("Fichier" );
+		JMenu file = new JMenu("Fichier");
 		JMenuItem new_game = new JMenuItem("Nouvelle partie" );
 		JMenuItem about = new JMenuItem("A propos" );
 		JMenuItem quit = new JMenuItem("Quitter" );
+			
+		JMenu game = new JMenu("Jeu");
+		JMenuItem save = new JMenuItem("Sauvegarder la partie");
+		JMenuItem load = new JMenuItem("Charger la partie");
+		JMenuItem restart = new JMenuItem("Recommencer la partie");
 		
 		new_game.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_N,
                 InputEvent.CTRL_MASK));
@@ -59,11 +70,22 @@ public class View {
 	    	}
 	    });
 		
-		fichier.add(new_game);
-		fichier.add(about);
-		fichier.add(quit);
-		bar.add(fichier);
+		file.add(new_game);
+		file.add(about);
+		file.add(quit);
+		game.add(save);
+		game.add(load);
+		game.add(restart);
+		bar.add(file);
+		bar.add(game);
 		bar.setVisible(true);
 		window.add(bar,BorderLayout.NORTH);
+	}
+	
+	private void init_score() {
+		score = new JPanel();
+		score.add(new JLabel("Score : 0"));
+		window.add(score, BorderLayout.SOUTH);
+		score.setBorder(BorderFactory.createLineBorder(Color.black));
 	}
 }
