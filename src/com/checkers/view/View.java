@@ -18,7 +18,6 @@ public class View {
 		this.size_x = size_x;
 		this.size_y = size_y;
 		init_window();
-		init_menu();
 	}
 	
 	private void init_window() {
@@ -29,6 +28,7 @@ public class View {
 			window.setSize(this.size_x, this.size_y);
 			window.setResizable(false);
 			window.setLayout(new BorderLayout());
+			init_menu();
 			window.setVisible(true);
 		}
 	}
@@ -43,6 +43,7 @@ public class View {
 		fichier.add(about);
 		fichier.add(quit);
 		bar.add(fichier);
+		bar.setVisible(true);
 		window.add(bar,BorderLayout.NORTH);
 	}
 }
