@@ -1,8 +1,10 @@
 package com.checkers.model;
 
-public class Case {
+import javax.swing.JButton;
 
-	public Case() {
+public class Case extends JButton{
+
+	public Case(int column, int line, String color, boolean available) {
 		// TODO Auto-generated constructor stub
 	}
 
