@@ -135,6 +135,7 @@ public class View {
 				else 
 					cases[i][j] = new Case(i,j,"White",false);
 				
+				cases[i][j].setBorder(javax.swing.BorderFactory.createEmptyBorder(2,2,2,2));
 				cases[i][j].addActionListener(new ActionListener() { 
 				@Override
 				public void actionPerformed(ActionEvent e) {
@@ -145,7 +146,7 @@ public class View {
 					for (int l = 0; l < cases.length; l++) {
 						for(int c=0; c < 8; c++)
 						{
-							cases[l][c].setBorder(javax.swing.BorderFactory.createEmptyBorder());
+							cases[l][c].setBorder(javax.swing.BorderFactory.createEmptyBorder(2,2,2,2));
 						}
 					}
 					o.setBorder(BorderFactory.createMatteBorder(2, 2, 2, 2, Color.blue));
