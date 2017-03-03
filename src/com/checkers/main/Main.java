@@ -1,5 +1,10 @@
 package com.checkers.main;
 
+import java.awt.BorderLayout;
+import javax.swing.*;
+
+import com.checkers.view.View;
+
 public class Main {
 	private static String TAG = "Cs : Main ";
 
@@ -8,8 +13,6 @@ public class Main {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		System.out.println("Start main");
-		
+		View view = new View(600, 600);
 	}
-
 }
