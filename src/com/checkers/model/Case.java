@@ -1,10 +1,13 @@
 package com.checkers.model;
 
 import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
+import javax.swing.event.EventListenerList;
 
 public class Case extends JButton{
 
@@ -12,12 +15,20 @@ public class Case extends JButton{
 	private int line;
 	private String color;
 	private boolean available;
+	private EventListenerList listeners;
 
 	public Case(int line, int column, String color, boolean available) {
 		super();
 		setColumn(column);
 		setLine(line);
 		setCouleur(color);
+		listeners = new EventListenerList();
+		this.addActionListener(new ActionListener() { 
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				System.out.println("X: " + column + " Y: " + line);
+			} 
+			} );
 	}
 
 	public String getCouleur() {
@@ -27,6 +38,7 @@ public class Case extends JButton{
 		this.color = couleur;
 		if(couleur.compareTo("White" ) == 0) {
 			setIcon(new ImageIcon("img/blanc.jpg"));
+			this.setEnabled(false);
 		}
 		if(couleur.compareTo("Black" ) == 0) {
 			setIcon(new ImageIcon("img/brun.jpg"));
