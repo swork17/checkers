@@ -70,7 +70,7 @@ public class View {
 		JMenuItem restart = new JMenuItem("Recommencer");
 		
 		JMenu about = new JMenu("A propos");
-		JMenuItem rules = new JMenuItem("Règle du jeu" );
+		JMenuItem rules = new JMenuItem("Rï¿½gle du jeu" );
 		JMenuItem help = new JMenuItem("?" );
 		
 		file.add(new_game);
@@ -103,7 +103,7 @@ public class View {
 		// Option "?"
 		help.addActionListener(new ActionListener(){
 	    	public void actionPerformed(ActionEvent e){
-    		JOptionPane.showMessageDialog(null, "Créateurs : Kévin BOUCHER - Fabien DIDIER\nVersion : 0.1",
+    		JOptionPane.showMessageDialog(null, "Createurs : Kevin BOUCHER - Fabien DIDIER\nVersion : 0.1",
 						    		            "Information", JOptionPane.NO_OPTION);;
 	    	}
 	    });
