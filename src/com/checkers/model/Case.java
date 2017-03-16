@@ -49,6 +49,7 @@ public class Case extends JButton{
 				Pawn jp = new Pawn("black", this.column, this.line, false);
 				this.add(jp);
 				this.available = false;
+				System.out.println("Set pawn, case is " + this.isAvailable());
 			}
 			else if (this.line > (View._SIZE_X / 2)) {
 				Pawn jp = new Pawn("white", this.column, this.line, false);
