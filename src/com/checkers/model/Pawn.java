@@ -28,8 +28,6 @@ public class Pawn extends Case
     	if(color.equals("white"))
     		this.color_pawn = white_pawn;
     	//this.available = available;
-        setOpaque(true);
-        //this.set
     }
 
    
