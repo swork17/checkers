@@ -9,7 +9,7 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 
-public class Pawn extends JPanel
+public class Pawn extends Case
 {
     Ellipse2D.Double circle;
     private String black_pawn = "img/pawn_black.png";
@@ -18,15 +18,18 @@ public class Pawn extends JPanel
     private int pos_x;
     private int pos_y; 
 
-    public Pawn(String color, int column, int line)
+    public Pawn(String color, int column, int line, boolean available)
     {
+    	super(line, column, color, available);
     	this.pos_x = column;
     	this.pos_y = line;
     	if (color.equals("black"))
     		this.color_pawn = black_pawn;
     	if(color.equals("white"))
     		this.color_pawn = white_pawn;
-        setOpaque(false);
+    	this.available = available;
+        setOpaque(true);
+        //this.set
     }
 
    

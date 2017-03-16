@@ -18,6 +18,7 @@ import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.KeyStroke;
+import javax.swing.SwingUtilities;
 import javax.swing.event.EventListenerList;
 
 import com.checkers.model.Case;
@@ -27,11 +28,14 @@ public class View {
 	
 	private int size_x;
 	private int size_y;
-	private JFrame window;
+	public static JFrame window;
 	private JMenuBar bar;
 	private JPanel score;
 	private JPanel plateform;
 	private Case cases[][];
+	
+	public static int _SIZE_X = 10;
+	public static int _SIZE_Y = 10;
 	
 	public View(int size_x, int size_y) {
 		this.size_x = size_x;
@@ -124,16 +128,16 @@ public class View {
 
 	private void init_plateform() {
 		plateform = new JPanel();
-		plateform.setLayout(new GridLayout(8, 8));
-		cases = new Case[8][8];
-		for(int i = 0; i < 8; i++) {
-			cases[i] = new Case[8];
-			for(int j=0; j < 8; j++)
+		plateform.setLayout(new GridLayout(_SIZE_X, _SIZE_Y));
+		cases = new Case[_SIZE_X][_SIZE_Y];
+		for(int i = 0; i < _SIZE_X; i++) {
+			cases[i] = new Case[_SIZE_Y];
+			for(int j=0; j < _SIZE_Y; j++)
 			{
 				if(((i+j) % 2)==0)
-					cases[i][j] = new Case(i,j,"Black",false);
+					cases[i][j] = new Case(i,j,"Black", true);
 				else 
-					cases[i][j] = new Case(i,j,"White",false);
+					cases[i][j] = new Case(i,j,"White", false);
 				
 				cases[i][j].setBorder(javax.swing.BorderFactory.createEmptyBorder(2,2,2,2));
 				cases[i][j].addActionListener(new ActionListener() { 
@@ -142,14 +146,36 @@ public class View {
 				    Case o = (Case)e.getSource();
 					System.out.println("X: " + o.getColumn() + " Y: " + o.getLine());
 					
-					// Déselection des lignes et sélection de la ligne 
+					// Deselection des lignes et selection de la ligne 
 					for (int l = 0; l < cases.length; l++) {
-						for(int c=0; c < 8; c++)
-						{
+						for(int c=0; c < _SIZE_Y; c++) {
 							cases[l][c].setBorder(javax.swing.BorderFactory.createEmptyBorder(2,2,2,2));
+
+							if(((l+c) % 2)==0)
+								cases[l][c].setColorAfter("Black");
+							else 
+								cases[l][c].setColorAfter("White");
+						
 						}
 					}
+					
+					System.out.println("Case is : " + cases[o.getLine()][o.getColumn()].isAvailable());
 					o.setBorder(BorderFactory.createMatteBorder(2, 2, 2, 2, Color.blue));
+					if (o.getLine()-1 > 0 && o.getColumn()-1 > 0) {
+						if (o.getLine() <= (_SIZE_X / 2) - 1) {
+							if (cases[o.getLine()+1][o.getColumn()-1].isAvailable())
+								cases[o.getLine()+1][o.getColumn()-1].setColorAfter("yellow");
+							if (cases[o.getLine()+1][o.getColumn()+1].isAvailable())
+								cases[o.getLine()+1][o.getColumn()+1].setColorAfter("yellow");
+						}
+						else {
+							if (cases[o.getLine()-1][o.getColumn()-1].isAvailable())
+								cases[o.getLine()-1][o.getColumn()-1].setColorAfter("yellow");
+							if (cases[o.getLine()-1][o.getColumn()+1].isAvailable())
+								cases[o.getLine()-1][o.getColumn()+1].setColorAfter("yellow");
+						}
+					}
+					SwingUtilities.updateComponentTreeUI(window);
 				} 
 				});
 				

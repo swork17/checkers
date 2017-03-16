@@ -11,12 +11,14 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.event.EventListenerList;
 
+import com.checkers.view.View;
+
 public class Case extends JButton{
 
-	private int column;
-	private int line;
-	private String color;
-	private boolean available;
+	protected int column;
+	protected int line;
+	protected String color;
+	protected boolean available;
 	private EventListenerList listeners;
 
 	public Case(int line, int column, String color, boolean available) {
@@ -24,6 +26,9 @@ public class Case extends JButton{
 		setColumn(column);
 		setLine(line);
 		setCouleur(color);
+		this.setOpaque(true);
+		this.available = available;
+		
 	}
 	
 	public String getCouleur() {
@@ -31,22 +36,40 @@ public class Case extends JButton{
 	}
 	public void setCouleur(String couleur) {
 		this.color = couleur;
+		if (couleur.compareTo("yellow") == 0)
+			setIcon(new ImageIcon("img/yellow.jpg"));
+		if(couleur.compareTo("White" ) == 0) {
+			setIcon(new ImageIcon("img/blanc.jpg"));
+			this.setEnabled(true);
+		}
+		
+		if(couleur.compareTo("Black" ) == 0) {
+			setIcon(new ImageIcon("img/brun.jpg"));
+			if (this.line < (View._SIZE_X / 2) - 1) {
+				Pawn jp = new Pawn("black", this.column, this.line, false);
+				this.add(jp);
+				this.available = false;
+			}
+			else if (this.line > (View._SIZE_X / 2)) {
+				Pawn jp = new Pawn("white", this.column, this.line, false);
+				this.add(jp);
+			}
+
+		}
+	}
+	
+	public void setColorAfter(String couleur) {
+		if (couleur.compareTo("yellow") == 0)
+			setIcon(new ImageIcon("img/yellow.jpg"));
 		if(couleur.compareTo("White" ) == 0) {
 			setIcon(new ImageIcon("img/blanc.jpg"));
 			this.setEnabled(true);
 		}
 		if(couleur.compareTo("Black" ) == 0) {
 			setIcon(new ImageIcon("img/brun.jpg"));
-			if (this.line < 3) {
-				JPanel jp = new Pawn("black", this.column, this.line);
-				this.add(jp);
-			}
-			else if (this.line > 4) {
-				JPanel jp = new Pawn("white", this.column, this.line);
-				this.add(jp);
-			}
 		}
 	}
+	
 	public int getColumn() {
 		return column;
 	}
