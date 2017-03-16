@@ -58,7 +58,9 @@ public class Pawn extends JPanel
 			Image img = ImageIO.read(new File(color_pawn));
 			super.paintComponent(g);
 	        Graphics2D g2 = (Graphics2D) g;
-	        g2.drawImage(img, 0,0, null);
+	        int x = (this.getWidth() -img.getWidth(null)) / 2;
+		    int y = (this.getHeight() - img.getHeight(null)) / 2;
+	        g2.drawImage(img, x, y, null);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
